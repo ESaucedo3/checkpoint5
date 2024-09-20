@@ -7,6 +7,7 @@
   import { computed, watch } from 'vue';
   import { useRoute } from 'vue-router';
   import PostCard from '@/components/PostCard.vue';
+  import PostForm from '@/components/PostForm.vue';
 
   const route = useRoute();
   const activeProfile = computed(() => AppState.activeProfile);
@@ -36,16 +37,18 @@
       Pop.error(e);
     }
   }
-
-
 </script>
 
 
 <template>
   <section class="container">
-    <div class="row">
-    
-      <div v-for="post in posts" :key="post.id" class="col-12">
+    <section class="row">
+      <div class="col-12">
+        <PostForm />
+      </div>
+    </section>
+    <div class="row justify-content-center">
+      <div v-for="post in posts" :key="post.id" class="col-12 adjust">
         <PostCard :postProp="post" />
       </div>
     </div>
@@ -54,5 +57,7 @@
 
 
 <style lang="scss" scoped>
-
+  .adjust {
+    width: 90%;
+  }
 </style>

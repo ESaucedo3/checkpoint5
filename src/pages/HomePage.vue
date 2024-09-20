@@ -31,8 +31,15 @@ import Pagination from '@/components/Pagination.vue';
   <section class="container-fluid">
     <div class="row my-2">
       <div class="mobile col-3">
-        <div>
-          Account would go here but not sure how to quite position this yet for the middle
+        <div v-if="activeAccount" class="d-flex flex-column align-items-center">
+          <img class="img-fluid mb-2 position-relative" :src="activeAccount.coverImg" :alt="activeAccount.name">
+          <div class="graduate">
+            <label>{{`${activeAccount.graduated ? '🎓' : 'No'}`}}</label>
+          </div>
+          <p>{{ activeAccount.name }}</p>
+        </div>
+        <div v-else>
+          <p class="text-center">Login Or Sign Up</p>
         </div>
       </div>
       <div class="col-12 col-md-6">
@@ -57,5 +64,15 @@ import Pagination from '@/components/Pagination.vue';
   button {
     background: none;
     border: none;
+  }
+
+  img {
+    height: 17dvh;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+  }
+
+  .graduate {
+    position: absolute;
   }
 </style>

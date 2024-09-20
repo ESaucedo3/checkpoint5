@@ -16,6 +16,7 @@ import { useRoute } from 'vue-router';
       <router-link v-if="route.name === 'Home'" :to="{ name: 'ProfileDetails', params: { profileId: postProp.creatorId } }" :title="`Go to ${postProp.creator.name}'s profile page!'`">
         <img class="img-fluid me-2" :src="postProp.creator.picture" :alt="postProp.creator.name">
       </router-link>
+      <img v-else class="img-fluid" :src="postProp.creator.picture" :alt="postProp.creator.name">
       <div>
         <p>{{ postProp.creator.name }}<br>{{ postProp.createdAt.toLocaleDateString() }} {{ `${postProp.creator.graduated ? '🎓' : ''}` }}</p>
         <!-- <p><i class="fa-solid fa-heart" style="color: #63E6BE;"></i>{{postProp.likeIds.length}}</p> -->
