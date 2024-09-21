@@ -19,10 +19,11 @@ function toggleTheme() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm px-4">
+  <nav class="navbar navbar-expand-sm px-5">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
+      <div class="d-flex flex-column align-items-center justify-content-between">
         <h2 class="text-light">Network</h2>
+        
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -30,17 +31,8 @@ function toggleTheme() {
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li>
-        <!--           
-        <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
-          About
-        </router-link> -->
-        </li>
-      </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Search />
-      <Login />
     </div>
   </nav>
 </template>

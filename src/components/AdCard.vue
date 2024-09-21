@@ -24,7 +24,7 @@
 
 
 <template>
-  <div class="p-1">
+  <div class="p-1 sticky-top">
     <div v-for="ad in ads" :key="ad.title" class="mb-2">
       <img class="img-fluid rounded" :src="ad.square" alt="">
     </div>

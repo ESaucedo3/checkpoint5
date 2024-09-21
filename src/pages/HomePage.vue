@@ -1,7 +1,6 @@
 <script setup>
   import { AppState } from '@/AppState.js';
-  import AdCard from '@/components/AdCard.vue';
-import Pagination from '@/components/Pagination.vue';
+  import Pagination from '@/components/Pagination.vue';
   import PostCard from '@/components/PostCard.vue';
   import PostForm from '@/components/PostForm.vue';
   import { postService } from '@/services/PostService.js';
@@ -10,7 +9,7 @@ import Pagination from '@/components/Pagination.vue';
   import { computed, onMounted } from 'vue';
 
   const posts = computed(() => AppState.posts);
-  const activeAccount = computed(() => AppState.account);
+  const account = computed(() => AppState.account);
 
   onMounted(() => {
     getPosts();
@@ -28,30 +27,21 @@ import Pagination from '@/components/Pagination.vue';
 </script>
 
 <template>
-  <section class="container-fluid">
-    <div class="row my-2">
-      <div class="mobile col-3">
-        <div v-if="activeAccount" class="d-flex flex-column align-items-center">
-          <img class="img-fluid mb-2 position-relative" :src="activeAccount.coverImg" :alt="activeAccount.name">
-          <div class="graduate">
-            <label>{{`${activeAccount.graduated ? '🎓' : 'No'}`}}</label>
+    <section class="row justify-content-center py-3">
+      <div class="col-9">
+        <div class="row gy-3">
+          <div v-if="account" class="col-12">
+            <PostForm />
           </div>
-          <p>{{ activeAccount.name }}</p>
+          <div v-for="post in posts" :key="post.id" class="col-12">
+            <PostCard :postProp="post" />
+          </div>
+          <div class="col-12">
+            <Pagination />
+          </div>
         </div>
-        <div v-else>
-          <p class="text-center">Login Or Sign Up</p>
-        </div>
       </div>
-      <div class="col-12 col-md-6">
-        <PostForm />
-        <PostCard v-for="post in posts" :key="post.id" :postProp="post" />
-        <Pagination />
-      </div>
-      <div class="mobile col-3">
-        <AdCard />
-      </div>
-    </div>
-  </section>
+    </section>
 </template>
 
 <style scoped lang="scss">

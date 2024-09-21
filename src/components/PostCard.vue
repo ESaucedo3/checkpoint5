@@ -1,8 +1,12 @@
 <script setup>
+  import { AppState } from '@/AppState.js';
   import { Post } from '@/models/Post.js';
-import { useRoute } from 'vue-router';
+  import { computed } from 'vue';
+  import { useRoute } from 'vue-router';
 
   const route = useRoute();
+
+  const account = computed(() => AppState.account);
 
   const props = defineProps({
     postProp: { type: Post, required: true }
@@ -11,19 +15,22 @@ import { useRoute } from 'vue-router';
 
 
 <template>
-  <div class="p-3 mb-3">
+  <div class="p-3 card-custom">
     <div class="d-flex">
       <router-link v-if="route.name === 'Home'" :to="{ name: 'ProfileDetails', params: { profileId: postProp.creatorId } }" :title="`Go to ${postProp.creator.name}'s profile page!'`">
-        <img class="img-fluid me-2" :src="postProp.creator.picture" :alt="postProp.creator.name">
+        <img class="img-fluid me-2 creator-img" :src="postProp.creator.picture" :alt="postProp.creator.name">
       </router-link>
       <img v-else class="img-fluid" :src="postProp.creator.picture" :alt="postProp.creator.name">
       <div>
         <p>{{ postProp.creator.name }}<br>{{ postProp.createdAt.toLocaleDateString() }} {{ `${postProp.creator.graduated ? '🎓' : ''}` }}</p>
-        <!-- <p><i class="fa-solid fa-heart" style="color: #63E6BE;"></i>{{postProp.likeIds.length}}</p> -->
+      </div>
+      <div v-if="account.id === postProp.creatorId" class="ms-auto">
+        ... Change Post or Delete
       </div>
     </div>
-    <div>
+    <div class="actual">
       <p>{{ postProp.body }}</p>
+      <img class="img-post" :src="postProp.imgUrl" :alt="postProp.creator.name">
       <div class="text-end">
         <button class="selectable" type="button">
           <i class="fa-solid fa-heart" style="color: #63E6BE;"></i>
@@ -38,7 +45,7 @@ import { useRoute } from 'vue-router';
 
 
 <style lang="scss" scoped>
-  img {
+  .creator-img {
     height: 3rem;
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -53,5 +60,18 @@ import { useRoute } from 'vue-router';
   button {
     background: none;
     border: none;
+  }
+
+  .card-custom {
+    background-color: rgb(224, 234, 242);
+    box-shadow: 1px 1px 9px rgba(#333, 0.2);
+  }
+
+  .img-post {
+    height: 60dvh;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center;
   }
 </style>
