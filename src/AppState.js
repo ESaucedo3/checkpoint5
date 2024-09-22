@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 import { reactive } from "vue";
+
 import { Post } from "./models/Post.js";
 import { Ad } from "./models/Ad.js";
 import { Account } from "./models/Account.js";
@@ -13,9 +15,6 @@ export const AppState = reactive({
   posts: [],
   totalPages: 0,
   currentPage: 0,
-  // NOTE For the following below not entirely sure what their purpose is yet
-  newer: null,
-  older: null,
 
   /**@type {Ad[]} */
   ads: [],

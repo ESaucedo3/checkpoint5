@@ -36,9 +36,11 @@ async function logout() {
         <div class="d-flex flex-column align-items-center">
           <p class="m-0">Fall 2024</p>
           <h5>{{ account?.name }}</h5>
-          <a href="https://github.com/"><i class="fa-brands fa-github fa-lg"></i>  {{ account?.github }}</a>
-          <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin fa-lg"></i>  {{ account?.linkedin }}</a>
-          <a href="https://www.resume.com/"><i class="fa-solid fa-file fa-lg"></i>  {{ account?.resume }}</a>
+          <div>
+            <a href="https://github.com/"><i class="fa-brands fa-github fa-lg"></i>  {{ account?.github }}</a>
+            <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin fa-lg mx-2"></i>  {{ account?.linkedin }}</a>
+            <a href="https://www.resume.com/"><i class="fa-solid fa-file fa-lg"></i>  {{ account?.resume }}</a>
+          </div>
         </div>
 
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="authDropdown">
@@ -46,6 +48,11 @@ async function logout() {
             <router-link :to="{ name: 'Account' }">
               <div class="list-group-item dropdown-item list-group-item-action">
                 Manage Account
+              </div>
+            </router-link>
+            <router-link :to="{ path: `profiles/${account?.id}` }">
+              <div class="list-group-item dropdown-item list-group-item-action">
+                Truly Manage Account
               </div>
             </router-link>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">

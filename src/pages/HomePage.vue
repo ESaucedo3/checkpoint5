@@ -5,9 +5,10 @@
   import PostForm from '@/components/PostForm.vue';
 import ProfileCard from '@/components/ProfileCard.vue';
   import { postService } from '@/services/PostService.js';
+import { profileService } from '@/services/ProfileService.js';
   import { logger } from '@/utils/Logger.js';
   import Pop from '@/utils/Pop.js';
-  import { computed, onMounted } from 'vue';
+  import { computed, onMounted, onUnmounted } from 'vue';
 
   const posts = computed(() => AppState.posts);
   const account = computed(() => AppState.account);
@@ -17,6 +18,8 @@ import ProfileCard from '@/components/ProfileCard.vue';
     getPosts();
   })
 
+  onUnmounted(() => profileService.clearUsers())
+  
   async function getPosts() {
     try {
       await postService.getPosts();

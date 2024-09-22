@@ -8,6 +8,7 @@
   import PostCard from '@/components/PostCard.vue';
   import PostForm from '@/components/PostForm.vue';
   import ProfileDetails from '@/components/ProfileDetails.vue';
+  import Pagination from '@/components/Pagination.vue';
 
   const route = useRoute();
   const account = computed(() => AppState.account);
@@ -55,6 +56,10 @@
         
         <div v-for="post in posts" :key="post.id" class="col-12">
           <PostCard :postProp="post" />
+        </div>
+
+        <div class="col-12">
+          <Pagination />
         </div>
       </div>
     </div>

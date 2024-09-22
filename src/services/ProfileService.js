@@ -3,6 +3,9 @@ import { api } from "./AxiosService.js";
 import { Account } from "@/models/Account.js";
 
 class ProfileService {
+  clearUsers() {
+    AppState.users = [];
+  }
   async searchUsers(userQuery) {
     const reponse = await api.get(`api/profiles?query=${userQuery}`);
     const users = reponse.data.map((user) => new Account(user));
