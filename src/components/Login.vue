@@ -30,15 +30,15 @@ async function logout() {
           aria-expanded="false">
           <div v-if="account?.picture || identity?.picture">
             <img :src="account?.picture || identity?.picture" alt="account photo" />
-            <i v-if="account.graduated" class="fa-solid fa-graduation-cap fa-lg graduate"></i>
+            <i v-if="account?.graduated" class="fa-solid fa-graduation-cap fa-lg graduate"></i>
           </div>
         </div>
         <div class="d-flex flex-column align-items-center">
           <p class="m-0">Fall 2024</p>
-          <h5>{{ account.name }}</h5>
-          <a href=""><i class="fa-brands fa-github fa-lg"></i>  {{ account.name }}</a>
-          <a href=""><i class="fa-brands fa-linkedin fa-lg"></i>  {{ account.name }}</a>
-          <a href="#"><i class="fa-solid fa-file fa-lg"></i>  {{ account.name }}</a>
+          <h5>{{ account?.name }}</h5>
+          <a href=""><i class="fa-brands fa-github fa-lg"></i>  {{ account?.name }}</a>
+          <a href=""><i class="fa-brands fa-linkedin fa-lg"></i>  {{ account?.name }}</a>
+          <a href="#"><i class="fa-solid fa-file fa-lg"></i>  {{ account?.name }}</a>
         </div>
 
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="authDropdown">

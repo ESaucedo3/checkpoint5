@@ -20,12 +20,14 @@ import { computed } from 'vue';
 
 <template>
   <div class="d-flex justify-content-between">
-    <button @click="changePage(currentPage - 1)" type="button" :disabled="currentPage === 1"><i class="fa-solid fa-arrow-left"></i>Newer</button>
+    <button @click="changePage(currentPage - 1)" type="button" :disabled="currentPage === 1"><i class="fa-solid fa-arrow-left"></i> Newer</button>
     <button @click="changePage(currentPage + 1)" type="button" :disabled="currentPage === totalPages">Older <i class="fa-solid fa-arrow-right"></i></button>
   </div>
 </template>
 
-
 <style lang="scss" scoped>
-
+  button {
+    background: none;
+    border: none;
+  }
 </style>

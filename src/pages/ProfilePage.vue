@@ -8,8 +8,10 @@
   import { useRoute } from 'vue-router';
   import PostCard from '@/components/PostCard.vue';
   import PostForm from '@/components/PostForm.vue';
+import ProfileDetails from '@/components/ProfileDetails.vue';
 
   const route = useRoute();
+  const account = computed(() => AppState.account);
   const activeProfile = computed(() => AppState.activeProfile);
   const posts = computed(() => AppState.posts)
 
@@ -41,15 +43,20 @@
 
 
 <template>
-  <section class="container">
-    <section class="row">
-      <div class="col-12">
-        <PostForm />
-      </div>
-    </section>
-    <div class="row justify-content-center">
-      <div v-for="post in posts" :key="post.id" class="col-12 adjust">
-        <PostCard :postProp="post" />
+  <section class="row justify-content-center py-3">
+    <div class="col-9">
+      <div class="row gy-3">
+        <div class="col-12">
+          <ProfileDetails />
+        </div>
+
+        <div v-if="account && account?.id === activeProfile?.id" class="col-12">
+          <PostForm />
+        </div>
+        
+        <div v-for="post in posts" :key="post.id" class="col-12">
+          <PostCard :postProp="post" />
+        </div>
       </div>
     </div>
   </section>
@@ -57,7 +64,5 @@
 
 
 <style lang="scss" scoped>
-  .adjust {
-    width: 90%;
-  }
+  
 </style>

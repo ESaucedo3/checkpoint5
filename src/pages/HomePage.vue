@@ -45,24 +45,5 @@
 </template>
 
 <style scoped lang="scss">
-  @media (width < 600px) {
-    .mobile {
-      display: none;
-    }
-  }
 
-  button {
-    background: none;
-    border: none;
-  }
-
-  img {
-    height: 17dvh;
-    border-radius: 50%;
-    aspect-ratio: 1/1;
-  }
-
-  .graduate {
-    position: absolute;
-  }
 </style>

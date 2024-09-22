@@ -2,6 +2,7 @@
   import Navbar from './components/Navbar.vue';
   import AdCard from './components/AdCard.vue';
 import Login from './components/Login.vue';
+import Modal from './components/Modal.vue';
 </script>
 
 <template>
@@ -25,6 +26,7 @@ import Login from './components/Login.vue';
       </div>
     </section>
   </main>
+  <Modal />
 </template>
 
 <style lang="scss">

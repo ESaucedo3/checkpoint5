@@ -7,9 +7,9 @@ class ProfileService {
     // Note clears potential ghost data
     AppState.activeProfile = null;
     const response = await api.get(`api/profiles/${profileId}`);
-    console.log(response.data);
     const acquiredProfile = new Account(response.data);
     AppState.activeProfile = acquiredProfile;
+    console.log(response.data);
   }
 }
 
