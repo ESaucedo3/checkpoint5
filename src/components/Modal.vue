@@ -1,8 +1,37 @@
 <script setup>
 import { AppState } from '@/AppState.js';
-import { computed } from 'vue';
+import { accountService } from '@/services/AccountService.js';
+import { logger } from '@/utils/Logger.js';
+import Pop from '@/utils/Pop.js';
+import { computed, onMounted, ref } from 'vue';
 
-  const account = computed(() => AppState.account);
+  const account = computed(() => AppState.account)
+
+  const editableAccountData = ref({
+    coverImg: '',
+    picture: '',
+    class: '',
+    graduated: false,
+    github: '',
+    linkedin: '',
+    resume: '',
+    bio: '',
+  })
+
+  onMounted(() => {
+    editableAccountData.value = { ...AppState.account }
+  })
+
+  async function updateAccount() {
+    try {
+      await accountService.updateAccount(editableAccountData.value)
+      Pop.success('Changes Saved!')
+    }
+    catch (e){
+      Pop.error(e);
+      logger.error(e)
+    }
+  } 
 </script>
 
 
@@ -16,7 +45,7 @@ import { computed } from 'vue';
         </div>
         <div class="modal-body">
           <section class="container-fluid">
-            <form class="row">
+            <form @submit.prevent="updateAccount()" class="row">
               <div class="col-12">
                 <div class="position-relative">
                   <img class="cover-img" :src="account?.coverImg" alt="Account">
@@ -24,14 +53,43 @@ import { computed } from 'vue';
                 </div>
               </div>
               <div class="col-12">
-                <div class="mt-5">
-                  <label class="form-label">Cover Image Url</label>
-                  <input class="form-control" type="url" placeholder="Image Url..">
+                <label class="form-label mt-5" for="accountCoverImg">Cover Image Url</label>
+                <input v-model="editableAccountData.coverImg" class="form-control" type="url" name="accountCoverImg" id="accountCoverImg" placeholder="Image Url..." maxlength="170" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="accountProfileImg">Profile Image Url</label>
+                <input v-model="editableAccountData.picture" class="form-control" id="accountProfileImg" name="accountProfileImg" type="url" placeholder="Image Url..." required>
+              </div>
+              <div class="col-8 col-md-5">
+                <label class="form-label my-3" for="accountClass">Attending Class</label>
+                <input v-model="editableAccountData.class" class="form-control" id="accountClass" name="accountClass" placeholder="Class..." maxlength="150">
+              </div>
+              <div class="col-4 col-md-2 text-center text-md-end">
+                <label class="form-label d-block my-3" for="accountGraduate">Graduated</label>
+                <input v-model="editableAccountData.graduated" type="checkbox" id="accountGraduate" name="accountGraduate">
+              </div>
+              <div class="col-md-5">
+                <label class="form-label my-3" for="accountGithub">Github</label>
+                <input v-model="editableAccountData.github" class="form-control" type="url" id="accountGithub" name="accountGithub" placeholder="Github Url..." maxlength="100">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label my-3" for="accountLinkedin">LinkedIn</label>
+                <input v-model="editableAccountData.linkedin" class="form-control" type="url" id="accountLinkedin" name="accountLinkedin" placeholder="LinkedIn Url..." maxlength="100">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label my-3" for="accountResume">Resume</label>
+                <input v-model="editableAccountData.resume" class="form-control" type="url" id="accountResume" name="accountResume" placeholder="Resume Url...">
+              </div>
+              <div class="col-12">
+                <label class="form-label mt-2" for="accountBio">Bio</label>
+                <textarea v-model="editableAccountData.bio" class="form-control" id="accountBio" name="accountBio" placeholder="Tell us about yourself" rows="3" maxlength="400"></textarea>
+              </div>
+              <div class="col-12">
+                <div class="text-center text-md-end mt-3">
+                  <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
+                  <button class="btn btn-outline-info ms-3">Save changes</button>
                 </div>
               </div>
-              <div class="col-6">s</div>
-              <div class="col-6">d</div>
-              <div class="col-6">f</div>
             </form>
           </section>
         </div>
@@ -64,5 +122,9 @@ import { computed } from 'vue';
     position: absolute;
     left: 3px;
     top: 90px;
+  }
+
+  textarea {
+    resize: none;
   }
 </style>

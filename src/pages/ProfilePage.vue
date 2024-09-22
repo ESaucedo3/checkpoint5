@@ -2,13 +2,12 @@
   import { AppState } from '@/AppState.js';
   import { postService } from '@/services/PostService.js';
   import { profileService } from '@/services/ProfileService.js';
-  import { logger } from '@/utils/Logger.js';
   import Pop from '@/utils/Pop.js';
   import { computed, watch } from 'vue';
   import { useRoute } from 'vue-router';
   import PostCard from '@/components/PostCard.vue';
   import PostForm from '@/components/PostForm.vue';
-import ProfileDetails from '@/components/ProfileDetails.vue';
+  import ProfileDetails from '@/components/ProfileDetails.vue';
 
   const route = useRoute();
   const account = computed(() => AppState.account);
@@ -46,7 +45,7 @@ import ProfileDetails from '@/components/ProfileDetails.vue';
   <section class="row justify-content-center py-3">
     <div class="col-9">
       <div class="row gy-3">
-        <div class="col-12">
+        <div v-if="activeProfile" class="col-12">
           <ProfileDetails />
         </div>
 

@@ -22,4 +22,7 @@ export const AppState = reactive({
 
   /**@type {Account} */
   activeProfile: null,
+  /**@type {Account[]} */
+  users: [],
+  userQuery: "",
 });

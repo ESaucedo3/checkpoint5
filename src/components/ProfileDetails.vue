@@ -11,19 +11,18 @@
   <div class="card-custom p-2">
     <img class="w-100 cover-img position-relative" :src="activeAccount?.coverImg" :alt="`${activeAccount?.name}'s cover image`">
     <div class="d-flex align-items-center">
-      <img class="creator-img" :src="activeAccount.picture" alt="">
+      <img class="creator-img" :src="activeAccount?.picture" alt="">
       <i v-if="activeAccount?.graduated" class="fa-solid fa-graduation-cap fa-lg graduate"></i>
     </div>
     <div class="mt-1">
-      <a href="https://www.google.com/"><i class="fa-brands fa-github fa-xl ms-2"></i></a>
-      <a class="mx-2" href="https://www.google.com/"><i class="fa-brands fa-linkedin fa-xl"></i></a>
-      <a href="https://www.google.com/"><i class="fa-solid fa-address-book fa-xl"></i></a>
+      <a href="https://github.com/"><i class="fa-brands fa-github fa-xl ms-2"></i></a>
+      <a class="mx-2" href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin fa-xl"></i></a>
+      <a href="https://www.resume.com/"><i class="fa-solid fa-address-book fa-xl"></i></a>
     </div>
     
-    <div>
-      <p class="m-0">{{ activeAccount?.class }}</p>
+    <div v-if="account">
       <h3>{{ activeAccount?.name }}</h3>
-      <p>{{ activeAccount?.bio }}</p>
+      <p>{{ activeAccount?.bio }} | {{  activeAccount?.class }}</p>
     </div>
     <div v-if="activeAccount?.id === account?.id" class="text-end">
       <button class="btn btn-outline-info" type="button" data-bs-toggle="modal" data-bs-target="#accountModal">Edit</button>
