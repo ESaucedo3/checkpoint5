@@ -75,7 +75,6 @@
       <div>
         <p>{{ postProp.creator.name }}<br>{{ postProp.createdAt.toLocaleDateString() }} {{ `${postProp.creator.graduated ? '🎓' : ''}` }}</p>
       </div>
-      <!-- TODO If you are the account of post created you should be able to edit or whatever -->
       <div v-if="account && account.id === postProp.creatorId" class="ms-auto dropdown-center">
         <button class="btn btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           ...

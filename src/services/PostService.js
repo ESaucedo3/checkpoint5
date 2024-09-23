@@ -4,6 +4,15 @@ import { AppState } from "@/AppState.js";
 import { logger } from "@/utils/Logger.js";
 
 class PostService {
+  async changeUserPage(pageNumber, profileId) {
+    const response = await api.get(
+      `api/posts?creatorId=${profileId}&page=${pageNumber}`
+    );
+    const newPosts = response.data.posts.map((post) => new Post(post));
+    AppState.posts = newPosts;
+    AppState.currentPage = response.data.page;
+    AppState.totalPages = response.data.totalPages;
+  }
   async updatePost(postId, updatedPostData) {
     const response = await api.put(`api/posts/${postId}`, updatedPostData);
     const postIndex = AppState.posts.findIndex((post) => post.id === postId);
@@ -45,7 +54,7 @@ class PostService {
     AppState.currentPage = response.data.page;
     AppState.totalPages = response.data.totalPages;
   }
-  async changePage(pageNumber) {
+  async changeHomePage(pageNumber) {
     const response = await api.get(`api/posts?page=${pageNumber}`);
     const newPosts = response.data.posts.map((post) => new Post(post));
     AppState.posts = newPosts;

@@ -37,22 +37,17 @@ async function logout() {
           <p class="m-0">Fall 2024</p>
           <h5>{{ account?.name }}</h5>
           <div>
-            <a href="https://github.com/"><i class="fa-brands fa-github fa-lg"></i>  {{ account?.github }}</a>
-            <a href="https://www.linkedin.com"><i class="fa-brands fa-linkedin fa-lg mx-2"></i>  {{ account?.linkedin }}</a>
-            <a href="https://www.resume.com/"><i class="fa-solid fa-file fa-lg"></i>  {{ account?.resume }}</a>
+            <a :href="account?.github" target="_blank"><i class="fa-brands fa-github fa-lg"></i></a>
+            <a :href="account?.linkedin" target="_blank"><i class="fa-brands fa-linkedin fa-lg mx-2"></i></a>
+            <a :href="account?.resume" target="_blank"><i class="fa-solid fa-file fa-lg"></i></a>
           </div>
         </div>
 
         <div class="dropdown-menu dropdown-menu-start" aria-labelledby="authDropdown">
           <div class="list-group">
-            <router-link :to="{ name: 'Account' }">
+            <router-link :to="{ name: 'ProfileDetails', params: {profileId: account?.id} }">
               <div class="list-group-item dropdown-item list-group-item-action">
                 Manage Account
-              </div>
-            </router-link>
-            <router-link :to="{ path: `profiles/${account?.id}` }">
-              <div class="list-group-item dropdown-item list-group-item-action">
-                Truly Manage Account
               </div>
             </router-link>
             <div class="list-group-item dropdown-item list-group-item-action text-danger selectable" @click="logout">

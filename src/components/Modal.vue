@@ -8,6 +8,7 @@ import { computed, onMounted, ref } from 'vue';
   const account = computed(() => AppState.account)
 
   const editableAccountData = ref({
+    name: '',
     coverImg: '',
     picture: '',
     class: '',
@@ -53,7 +54,11 @@ import { computed, onMounted, ref } from 'vue';
                 </div>
               </div>
               <div class="col-12">
-                <label class="form-label mt-5" for="accountCoverImg">Cover Image Url</label>
+                <label class="form-label mt-5" for="accountName">Name</label>
+                <input v-model="editableAccountData.name" class="form-control" name="accountName" id="accountName" placeholder="Name" maxlength="170" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="accountCoverImg">Cover Image Url</label>
                 <input v-model="editableAccountData.coverImg" class="form-control" type="url" name="accountCoverImg" id="accountCoverImg" placeholder="Image Url..." maxlength="170" required>
               </div>
               <div class="col-12">

@@ -37,6 +37,7 @@ import Modal from './components/Modal.vue';
 
 .login-design {
   background-color: #FFFFFF;
+  border-right: 1px solid #333;
 }
 
 .main-design {
