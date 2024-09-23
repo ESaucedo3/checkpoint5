@@ -10,7 +10,6 @@ import { Account } from '@/models/Account.js';
 <template>
   <div class="d-flex align-items-center p-2 profile-contain mb-3">
     <div class="img-contain me-3">
-      
       <img :src="userProp.picture" :alt="userProp.name">
     </div>
     <div class="w-100">

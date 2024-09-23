@@ -15,9 +15,9 @@
       <i v-if="activeAccount?.graduated" class="fa-solid fa-graduation-cap fa-lg graduate"></i>
     </div>
     <div class="mt-1">
-      <a :href="activeAccount.github" target="_blank"><i class="fa-brands fa-github fa-xl ms-2"></i></a>
-      <a class="mx-2" :href="activeAccount.linkedin" target="_blank"><i class="fa-brands fa-linkedin fa-xl"></i></a>
-      <a :href="activeAccount.resume" target="_blank"><i class="fa-solid fa-address-book fa-xl"></i></a>
+      <a v-if="activeAccount.github !== ''" :href="activeAccount.github" target="_blank"><i class="fa-brands fa-github fa-xl ms-2"></i></a>
+      <a v-if="activeAccount.linkedin !== ''" class="mx-2" :href="activeAccount.linkedin" target="_blank"><i class="fa-brands fa-linkedin fa-xl"></i></a>
+      <a v-if="activeAccount.resume !== ''" :href="activeAccount.resume" target="_blank"><i class="fa-solid fa-address-book fa-xl"></i></a>
     </div>
     
     <div v-if="account">
